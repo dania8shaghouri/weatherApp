@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* color 442a61*/
+  --bg-header: #060a0f8c;
+  --app-bg: rgba(61, 99, 159, 0.36);
+  --body-bg: #a3bded;
+  --text-color: #1a2337;
+}
