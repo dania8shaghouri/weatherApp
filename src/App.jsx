@@ -13,41 +13,32 @@ function App() {
   }, [i18n.language]);
 
   return (
-    <div
-      className="bg-[var(--body-bg)] 
-    min-h-screen flex flex-col items-center justify-center gap-4"
-    >
-      {/* Dil butonları */}
-      <div className="flex gap-2">
+    <>
+      <div
+        className="bg-[var(--body-bg)] 
+    min-h-screen flex flex-col items-center justify-center gap-4 "
+      >
+        {/* dil buttonu */}
         <button
-          onClick={() => i18n.changeLanguage("en")}
-          className="px-3 py-1 border rounded"
+          onClick={() =>
+            i18n.changeLanguage(i18n.language === "en" ? "ar" : "en")
+          }
+          className="px-4 py-1 border rounded"
         >
-          EN
+          {i18n.language === "en" ? "AR" : "EN"}
         </button>
-        <button
-          onClick={() => i18n.changeLanguage("ar")}
-          className="px-3 py-1 border rounded"
-        >
-          AR
-        </button>
+
+        {/* weahter card */}
+        <WeatherCard
+          city={t("city")}
+          date={t("date")}
+          condition={t("condition")}
+          temp={18}
+          high={22}
+          low={14}
+        />
       </div>
-
-      {/* Başlık */}
-      <h1 className="text-3xl font-bold text-black">
-        {t("title")}
-      </h1>
-
-      {/* Senin kartın (aynı kalıyor) */}
-      <WeatherCard
-        city={t("city")}
-        date={t("date")}
-        condition={t("condition")}
-        temp={18}
-        high={22}
-        low={14}
-      />
-    </div>
+    </>
   );
 }
 

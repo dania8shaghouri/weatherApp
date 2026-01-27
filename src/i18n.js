@@ -9,6 +9,8 @@ i18n.use(initReactI18next).init({
         city: "Istanbul",
         date: "27 Jan",
         condition: "Cloudy",
+        high: "H",
+        low: "L",
       },
     },
     ar: {
@@ -17,6 +19,8 @@ i18n.use(initReactI18next).init({
         city: "اسطنبول",
         date: "27 يناير",
         condition: "غائم",
+        high: "الكبرى",
+        low: "الصغرى",
       },
     },
   },
