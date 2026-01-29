@@ -1,12 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+
 import axios from "axios";
+import moment from "moment";
+
+moment.locale("ar");
 
 import "./App.css";
 import "./index.css";
 import WeatherCard from "./components/WeatherCard";
 let cancelAxios = null;
+
 function App() {
+  const [dateAndTime, setdateAndTime] = useState("");
   const [temp, setTemp] = useState({
     number: null,
     description: "",
@@ -17,8 +23,20 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
+    setdateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+    moment.locale(i18n.language === "ar" ? "ar" : "en");
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
+
+  // useEffect(() => {
+  //   moment.locale(i18n.language === "ar" ? "ar" : "en");
+
+  //   const interval = setInterval(() => {
+  //     setdateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+  //   }, 1000);
+
+  //   return () => clearInterval(interval);
+  // }, [i18n.language]);
 
   useEffect(() => {
     axios
@@ -74,7 +92,7 @@ function App() {
         {/* weahter card */}
         <WeatherCard
           city={t("city")}
-          date={t("date")}
+          date={dateAndTime}
           condition={temp.description}
           icon={temp.icon}
           temp={temp.number}

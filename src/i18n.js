@@ -6,7 +6,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
-        city: "Istanbul",
+        city: "Bursa",
         date: "27 Jan",
         condition: "Cloudy",
         high: "H",
@@ -15,7 +15,7 @@ i18n.use(initReactI18next).init({
     },
     ar: {
       translation: {
-        city: "اسطنبول",
+        city: "بورصه",
         date: "27 يناير",
         condition: "غائم",
         high: "الكبرى",
