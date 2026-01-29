@@ -8,7 +8,11 @@ export default function WeatherCard({
   condition,
   high,
   low,
+  icon,
 }) {
+  // react-i18next kütüphanesinden bir hook
+  // React component’ini global çeviri motoruna bağlar ve
+  // sana aktif dile göre metin getiren t() fonksiyonunu verir
   const { t } = useTranslation();
 
   return (
@@ -22,8 +26,11 @@ export default function WeatherCard({
       {/* Orta satır */}
       <div className="flex justify-between items-center px-6 py-6">
         <div className="flex flex-col">
-          <span className="text-4xl font-bold">{temp}°</span>
-          <span className="text-gray-500 mt-2">{condition}</span>
+          <div className="flex items-center mt-2">
+            <span className="text-4xl font-bold">{temp}°</span>
+            {icon && <img src={icon} className="w-20 h-20" />}
+          </div>
+          <span className="text-gray-600 mt-2">{condition}</span>
         </div>
 
         {/* Icon */}
@@ -31,7 +38,7 @@ export default function WeatherCard({
       </div>
 
       {/* Alt satır */}
-      <div className="flex justify-start gap-8 px-6 pb-3 mb-5 text-sm text-gray-500">
+      <div className="flex justify-start gap-8 px-6 pb-3 mb-5 text-sm text-gray-600">
         <span>
           {t("high")}: {high}°
         </span>

@@ -1,11 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+// React’e i18n’i bağlamak
 i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
-        title: "Weather App",
         city: "Istanbul",
         date: "27 Jan",
         condition: "Cloudy",
@@ -15,7 +15,6 @@ i18n.use(initReactI18next).init({
     },
     ar: {
       translation: {
-        title: "تطبيق الطقس",
         city: "اسطنبول",
         date: "27 يناير",
         condition: "غائم",
@@ -24,9 +23,9 @@ i18n.use(initReactI18next).init({
       },
     },
   },
-  lng: "en",
-  fallbackLng: "en",
-  interpolation: { escapeValue: false },
+  lng: "en",  // başlangıç dili
+  fallbackLng: "en", // hata olursa
+  interpolation: { escapeValue: false }, //Tekrar escape yapma, React’e bırak (guvenlik)
 });
 
 export default i18n;
