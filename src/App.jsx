@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import moment from "moment";
+import "moment/locale/ar";
 
 moment.locale("ar");
 
 import "./App.css";
 import "./index.css";
 import WeatherCard from "./components/WeatherCard";
+
 let cancelAxios = null;
 
 function App() {
@@ -23,20 +25,10 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    setdateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
-    moment.locale(i18n.language === "ar" ? "ar" : "en");
+    moment.locale(i18n.language);
+    setdateAndTime(moment().format("MMM Do YYYY, h:mm:ss a"));
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
-
-  // useEffect(() => {
-  //   moment.locale(i18n.language === "ar" ? "ar" : "en");
-
-  //   const interval = setInterval(() => {
-  //     setdateAndTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, [i18n.language]);
 
   useEffect(() => {
     axios
@@ -86,7 +78,7 @@ function App() {
           }
           className="px-4 py-1 border rounded"
         >
-          {i18n.language === "en" ? "AR" : "EN"}
+          {i18n.language === "en" ? "Arabic" : "English"}
         </button>
 
         {/* weahter card */}

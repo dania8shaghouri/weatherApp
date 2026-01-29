@@ -1,31 +1,22 @@
+
+
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-// React’e i18n’i bağlamak
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: {
-        city: "Bursa",
-        date: "27 Jan",
-        condition: "Cloudy",
-        high: "H",
-        low: "L",
-      },
+import Backend from "i18next-http-backend";
+import LanguageDetector from "i18next-browser-languagedetector";
+
+i18n
+  .use(Backend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    fallbackLng: "en", // hata olursa
+    debug: true,
+
+    interpolation: {
+      escapeValue: false, //Tekrar escape yapma, React’e bırak (guvenlik)
     },
-    ar: {
-      translation: {
-        city: "بورصه",
-        date: "27 يناير",
-        condition: "غائم",
-        high: "الكبرى",
-        low: "الصغرى",
-      },
-    },
-  },
-  lng: "en",  // başlangıç dili
-  fallbackLng: "en", // hata olursa
-  interpolation: { escapeValue: false }, //Tekrar escape yapma, React’e bırak (guvenlik)
-});
+  });
 
 export default i18n;
