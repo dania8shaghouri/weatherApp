@@ -5,13 +5,11 @@ import axios from "axios";
 import moment from "moment";
 import "moment/locale/ar";
 
-moment.locale("ar");
-
 import "./App.css";
 import "./index.css";
 import WeatherCard from "./components/WeatherCard";
 
-let cancelAxios = null;
+// let cancelAxios = null;
 
 function App() {
   const [dateAndTime, setdateAndTime] = useState("");
@@ -30,15 +28,13 @@ function App() {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
 
+  const API_KEY = import.meta.env.VITE_WEATHER_KEY;
+  console.log("KEY:", import.meta.env.VITE_WEATHER_KEY);
+
   useEffect(() => {
     axios
       .get(
-        "https://api.openweathermap.org/data/2.5/weather?lat=40.19&lon=29.07&appid=74a5d2d8d243668d5fd807d816672775",
-        {
-          cancelToken: new axios.CancelToken((c) => {
-            cancelAxios = c;
-          }),
-        },
+        `https://api.openweathermap.org/data/2.5/weather?lat=40.19&lon=29.07&appid=${API_KEY}`,
       )
       .then(function (response) {
         // 272.15 kelvin to celsius
@@ -60,9 +56,6 @@ function App() {
       .catch(function (error) {
         console.log(error);
       });
-    return () => {
-      cancelAxios();
-    };
   }, []);
 
   return (
