@@ -9,9 +9,17 @@ import "./App.css";
 import "./index.css";
 import WeatherCard from "./components/WeatherCard";
 
+import { useSelector, useDispatch } from "react-redux";
+import { changeResult } from "./weatherApiSlice";
 // let cancelAxios = null;
 
 function App() {
+  // redux code
+  const dispath = useDispatch();
+  const result = useSelector((state) => {
+    console.log("the state is ", state);
+    return state.result;
+  });
   const [dateAndTime, setdateAndTime] = useState("");
   const [temp, setTemp] = useState({
     number: null,
@@ -23,13 +31,15 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
+    // trying redux
+    dispath(changeResult())
     moment.locale(i18n.language);
     setdateAndTime(moment().format("MMM Do YYYY, h:mm:ss a"));
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
 
   const API_KEY = import.meta.env.VITE_WEATHER_KEY;
-  console.log("KEY:", import.meta.env.VITE_WEATHER_KEY);
+  // console.log("KEY:", import.meta.env.VITE_WEATHER_KEY);
 
   useEffect(() => {
     axios
